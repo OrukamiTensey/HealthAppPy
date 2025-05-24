@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\DB_control.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\DB_control.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\user.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\user.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\DB_control.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\DB_control.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\activity.py||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,13 +58,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "DB_control.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\DB_control.py",
               "RelativeDocumentMoniker": "HealthAppPy\\DB_control.py",
               "ToolTip": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\DB_control.py",
               "RelativeToolTip": "HealthAppPy\\DB_control.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
               "WhenOpened": "2025-05-24T19:00:32.043Z",
               "EditorCaption": ""
@@ -79,7 +79,8 @@
               "RelativeToolTip": "HealthAppPy\\registration.py",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-05-17T16:15:59.162Z"
+              "WhenOpened": "2025-05-17T16:15:59.162Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -91,7 +92,8 @@
               "RelativeToolTip": "HealthAppPy\\activity.py",
               "ViewState": "AgIAABUAAAAAAAAAAAAawDUAAAAwAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-05-17T16:15:12.697Z"
+              "WhenOpened": "2025-05-17T16:15:12.697Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -115,11 +117,12 @@
               "RelativeToolTip": "HealthAppPy\\nutrition.py",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAGAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-05-17T16:15:10.803Z"
+              "WhenOpened": "2025-05-17T16:15:10.803Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "user.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\user.py",
               "RelativeDocumentMoniker": "HealthAppPy\\user.py",
@@ -127,11 +130,12 @@
               "RelativeToolTip": "HealthAppPy\\user.py",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-05-17T16:15:09.61Z"
+              "WhenOpened": "2025-05-17T16:15:09.61Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "main.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\main.py",
               "RelativeDocumentMoniker": "HealthAppPy\\main.py",
