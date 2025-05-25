@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="activity.py" />
     <Compile Include="calorie_counting.py" />
+    <Compile Include="DB_control.py" />
     <Compile Include="main.py" />
     <Compile Include="nutrition.py" />
     <Compile Include="registration.py" />
