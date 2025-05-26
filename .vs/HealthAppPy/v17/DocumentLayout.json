@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\activity.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\activity.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\nutrition.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\nutrition.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\calorie_counting.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\calorie_counting.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\DB_control.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\DB_control.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -15,20 +27,8 @@
       "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\user.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\activity.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\activity.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\nutrition.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\nutrition.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\registration.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\registration.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\calorie_counting.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{2D277C5A-D959-4704-9D02-FF3C8E334EDC}|HealthAppPy\\HealthAppPy.pyproj|solutionrelative:HealthAppPy\\calorie_counting.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,20 +58,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "DB_control.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\DB_control.py",
               "RelativeDocumentMoniker": "HealthAppPy\\DB_control.py",
               "ToolTip": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\DB_control.py",
               "RelativeToolTip": "HealthAppPy\\DB_control.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAdAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
               "WhenOpened": "2025-05-24T19:00:32.043Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "registration.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\registration.py",
               "RelativeDocumentMoniker": "HealthAppPy\\registration.py",
@@ -83,43 +83,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "activity.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\activity.py",
               "RelativeDocumentMoniker": "HealthAppPy\\activity.py",
               "ToolTip": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\activity.py",
               "RelativeToolTip": "HealthAppPy\\activity.py",
-              "ViewState": "AgIAABUAAAAAAAAAAAAawDUAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA4AAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-05-17T16:15:12.697Z"
+              "WhenOpened": "2025-05-17T16:15:12.697Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "calorie_counting.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\calorie_counting.py",
               "RelativeDocumentMoniker": "HealthAppPy\\calorie_counting.py",
               "ToolTip": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\calorie_counting.py",
               "RelativeToolTip": "HealthAppPy\\calorie_counting.py",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABHAAAA",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHeSURBVDhPpVMxa1NRFP7ebZLSlgaltNpSVCySRUxL0NAh4FJpHWpxcZAUBEPG/AKHDsVBN5eGrCnoYKCDoDiUCKKBjtZBUZtJ2ojYJr40ue\u002B\u002B47k3VzD0hQr94OOed8853/k47z2cCETk2NAgk8mQDQMhhFjK5/Mb9vEotIDruoEsFovEzVvZbPaWLTcQ9uxCpVLp4l\u002Bk0\u002BlEPB5/wIPm7RVC9uxCMpm0UTdKpRKi0WiCQy3wUt8FCvw7VSNxbRapG4voDwucGgyjXC7bzH84ePt1HysbH/GhWoNstzA1OoSFhZuxQqFg8sfu4FutAd\u002BT8KSEYm7v7GJ0YnLClgYLaAcjU9N4Vx9Dda8OBz7OjwywSNsIXY39vEL7TxWpxv2eO3hWHUZ19xc8ti25UdvXzdpNWH0BDj8JiLOrPXfweOu9mRgRhOXUEPr7IiBfYeacB9HaBNRvQH4f6\u002BlgMERwGxJP7grEoq9shj9Uz\u002BVGpmIi4vXcwdzlcePgzLAuZPiSGw869Jg\u002Biw1Mvw50oLGcuoh71y8h1HwB1Js8UfFLnwScNnBhdYVLWsy1IwK5XM5GHaw9uu0LeSCMddZA32lz7zjOQxMcByK1SPU3O/Rjnai2fkjNz8/5L77TyQJ/AJc67LNf3QeWAAAAAElFTkSuQmCC",
-              "WhenOpened": "2025-05-17T16:15:12.153Z"
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
+              "WhenOpened": "2025-05-17T16:15:12.153Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "nutrition.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\nutrition.py",
               "RelativeDocumentMoniker": "HealthAppPy\\nutrition.py",
               "ToolTip": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\nutrition.py",
               "RelativeToolTip": "HealthAppPy\\nutrition.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABYAAAAfAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrZMhboVAEIZ/GiQCiUBAgkByAZKHRnMKDKqGIAiqQXAEJEdAcAAkOEgQGASShANs9223r2xo8xJev\u002BRPdndmfmYmQTKHD4KLzPY7wA0u6V77Rg8PDMNgkmWZv3yhqioUReE3EcFgGAaUZYl5nhGGISuq6xpd12GaJhRFwTN/EAzWdYXneQiCAFEUIY5j9maaJpOmaXAch2dzjjvY953QDgjthGRZRpqmIb7vC3MfddrBtm1I0xSu6yJJEvR9j9vtxmL3veR5Dsuy2P3BsQM6u/AFugNC5ydt27KuqqoS4qz2aKDrupDwLdu2f42dRliWhZ9ExnH8MyYYXOF/DQghJz1DMJAk6aRnvDzCS78zAHwC4SWr3mOE00YAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-05-17T16:15:10.803Z"
+              "WhenOpened": "2025-05-17T16:15:10.803Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "user.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\user.py",
               "RelativeDocumentMoniker": "HealthAppPy\\user.py",
@@ -131,7 +134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "main.py",
               "DocumentMoniker": "D:\\universityCodes\\OOP\\Health-App_updated-python\\HealthAppPy\\HealthAppPy\\main.py",
               "RelativeDocumentMoniker": "HealthAppPy\\main.py",

@@ -1,3 +1,17 @@
+# consumed_table_sql = """CREATE TABLE IF NOT EXISTS CONSUMED (
+#                         USER TEXT NOT NULL,
+#                         DATE DATE NOT NULL,
+#                         TOTAL_MASS REAL NOT NULL,
+#                         TOTAL_PROTEINS REAL NOT NULL,
+#                         TOTAL_FATS REAL NOT NULL,
+#                         TOTAL_CARBOHYDRATES REAL NOT NULL,
+#                         TOTAL_KCAL INTEGER NOT NULL,
+#                         NORM_PROTEINS REAL NOT NULL,
+#                         NORM_FATS REAL NOT NULL,
+#                         NORM_CARBOHYDRATES REAL NOT NULL,
+#                         NORM_KCAL INTEGER NOT NULL
+#                         );"""
+
 class CalorieCounting:
     def __init__(self, user):
         self.user = user
