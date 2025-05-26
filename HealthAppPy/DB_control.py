@@ -157,7 +157,7 @@ class DBControl:
             conn.close()
 
     @staticmethod
-    def print_data(file_name, columns_name, table_name, object_condition=""):
+    def print_data(file_name, table_name, columns_name, object_condition=""):
         # Print all data of the table, according to condition
         sql = f"SELECT {columns_name} FROM {table_name}"
         if object_condition:
@@ -177,9 +177,13 @@ class DBControl:
             conn.close()
 
     @staticmethod
-    def data_exists(file_name, columns_name, table_name, object_condition):
+    def data_exists(file_name, table_name, columns_name, object_condition=""):
         # Check if the data exists in the table
-        sql = f"SELECT {columns_name} FROM {table_name} WHERE {object_condition} LIMIT 1;"
+        sql = f"SELECT {columns_name} FROM {table_name}"
+        if object_condition:
+            sql += f" WHERE {object_condition}"
+        
+        sql += " LIMIT 1;"
         exists = False
 
         try:
@@ -195,7 +199,7 @@ class DBControl:
         return exists
 
     @staticmethod
-    def receive_data(file_name, columns_name, table_name, object_condition=""):
+    def receive_data(file_name, table_name, columns_name, object_condition=""):
         # Get all data from the table, according to condition
         sql = f"SELECT {columns_name} FROM {table_name}"
         if object_condition:

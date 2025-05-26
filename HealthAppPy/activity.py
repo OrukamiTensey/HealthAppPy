@@ -1,5 +1,16 @@
 import json
 import os
+
+# activities_table_sql = """CREATE TABLE IF NOT EXISTS activities (
+#                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+#                         user_id INTEGER NOT NULL,
+#                         activity_type TEXT NOT NULL,
+#                         duration_minutes INTEGER NOT NULL,
+#                         calories_burned REAL NOT NULL,
+#                         date TEXT NOT NULL,
+#                         FOREIGN KEY (user_id) REFERENCES users (id)
+#                         );"""
+
 class Activity:
     def __init__(self, user):
         self.user = user
