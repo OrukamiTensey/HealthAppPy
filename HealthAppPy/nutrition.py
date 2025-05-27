@@ -1,6 +1,26 @@
 import json
 import os
 from datetime import date
+from DB_control import DBControl
+
+# products_table_sql = """CREATE TABLE IF NOT EXISTS PRODUCTS (
+#                         PRODUCT TEXT PRIMARY KEY,
+#                         PROTEINS REAL NOT NULL,
+#                         FATS REAL NOT NULL,
+#                         CARBOHYDRATES REAL NOT NULL,
+#                         KCAL INTEGER NOT NULL
+#                         );"""
+    
+# nutrition_table_sql = """CREATE TABLE IF NOT EXISTS NUTRITION (
+#                         USER TEXT NOT NULL,
+#                         DATE DATE NOT NULL,
+#                         PRODUCT TEXT NOT NULL,
+#                         CONSUMED_MASS REAL NOT NULL,
+#                         CONSUMED_PROTEINS REAL NOT NULL,
+#                         CONSUMED_FATS REAL NOT NULL,
+#                         CONSUMED_CARBOHYDRATES REAL NOT NULL,
+#                         CONSUMED_KCAL INTEGER NOT NULL
+#                         );"""
 
 class Nutrition:
     def __init__(self, user_email, catalog_path="product_catalog.json", history_path="nutrition_history.json"):
@@ -10,6 +30,39 @@ class Nutrition:
         self.today = date.today().isoformat()
         self.catalog = self.load_catalog()
         self.history = self.load_history()
+
+        self.db = DBControl()
+        self.db_name = "Health_database.db"
+
+        nutrition_table_sql = """CREATE TABLE IF NOT EXISTS NUTRITION (
+                                 USER TEXT PRIMARY KEY,
+                                 DATE DATE NOT NULL,
+                                 PRODUCT TEXT NOT NULL,
+                                 CONSUMED_MASS REAL NOT NULL,
+                                 CONSUMED_PROTEINS REAL NOT NULL,
+                                 CONSUMED_FATS REAL NOT NULL,
+                                 CONSUMED_CARBOHYDRATES REAL NOT NULL,
+                                 CONSUMED_KCAL INTEGER NOT NULL
+                                 );"""
+
+        consumed_table_sql = """CREATE TABLE IF NOT EXISTS CONSUMED (
+                                 USER TEXT NOT NULL,
+                                 DATE DATE NOT NULL,
+                                 TOTAL_MASS REAL NOT NULL,
+                                 TOTAL_PROTEINS REAL NOT NULL,
+                                 TOTAL_FATS REAL NOT NULL,
+                                 TOTAL_CARBOHYDRATES REAL NOT NULL,
+                                 TOTAL_KCAL INTEGER NOT NULL,
+                                 NORM_PROTEINS REAL NOT NULL,
+                                 NORM_FATS REAL NOT NULL,
+                                 NORM_CARBOHYDRATES REAL NOT NULL,
+                                 NORM_KCAL INTEGER NOT NULL
+                                 );"""
+
+        self.db.create_table(self.db_name, nutrition_table_sql)
+        self.db.create_table(self.db_name, consumed_table_sql)
+
+
 
     def load_catalog(self):
         if os.path.exists(self.catalog_path):
@@ -30,6 +83,8 @@ class Nutrition:
     def save_history(self):
         with open(self.history_path, 'w') as file:
             json.dump(self.history, file, indent=4)
+
+            self.db.
 
     def add_consumed_product(self):
         product_name = input("Enter product name: ").strip().lower()
