@@ -1,7 +1,7 @@
 import datetime
 from nutrition import Nutrition
 
-# Додано bjv_mode (CalorieCounting bjv_mode == "default")
+# Додано bjv_mode (CalorieCounting bjv_mode == "default" за замовчуванням, поки в мене в класі не змінять)
 class User:
     def init(self, name, email, birth_date, weight, height, sex, goal, bjv_mode, activity_factor):
         self.name = name

@@ -87,6 +87,7 @@ class CalorieCounting:
     def change_bjv_mode(self, bjv_mode):
         self.user.bjv_mode = bjv_mode
 
+    # Зберігання норми в бд
     def store_norm_to_db(self, db_name):
         current_date = date.today().isoformat()
         norm_calories = int(self.calculate_total_calories())
@@ -113,6 +114,7 @@ class CalorieCounting:
                     """
         DBControl.insert_data(db_name, insert_sql)
 
+    # Витягування результатів за день
     def get_daily_totals(self, db_name, target_date=None):
         if target_date is None:
             target_date = date.today().isoformat()
