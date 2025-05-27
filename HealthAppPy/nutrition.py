@@ -80,11 +80,11 @@ class Nutrition:
                 return json.load(file)
         return {}
 
-    def save_history(self):
-        with open(self.history_path, 'w') as file:
-            json.dump(self.history, file, indent=4)
-
-            self.db.
+    # def save_history(self):
+    #     with open(self.history_path, 'w') as file:
+    #         json.dump(self.history, file, indent=4)
+    #
+    #         self.db.
 
     def add_consumed_product(self):
         product_name = input("Enter product name: ").strip().lower()

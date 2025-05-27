@@ -1,8 +1,9 @@
 import datetime
 from nutrition import Nutrition
 
+# Додано bjv_mode (CalorieCounting bjv_mode == "default" за замовчуванням, поки в мене в класі не змінять)
 class User:
-    def __init__(self, name, email, birth_date, weight, height, sex, goal, activity_factor):
+    def init(self, name, email, birth_date, weight, height, sex, goal, bjv_mode, activity_factor):
         self.name = name
         self.email = email
         self.birth_date = birth_date  # у форматі YYYY-MM-DD
@@ -10,8 +11,10 @@ class User:
         self.height = height
         self.sex = sex  # 'M' або 'F'
         self.goal = goal  # 'lose', 'gain', 'maintain'
+        self.bjv_mode = bjv_mode
         self.activity_factor = float(activity_factor) # 1.2  1.55  1.9
         self.nutrition = Nutrition(self.email)
+
     def get_age(self):
         today = datetime.date.today()
         birth = datetime.datetime.strptime(self.birth_date, "%Y-%m-%d").date()
