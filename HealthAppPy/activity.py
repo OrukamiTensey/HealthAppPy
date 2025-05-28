@@ -1,46 +1,52 @@
 import json
 import os
+import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
 
+# Налаштування теми CustomTkinter
+ctk.set_appearance_mode("light")  # Світла тема
+ctk.set_default_color_theme("green")  # Зелена колірна схема
 
 class ActivityTrackerApp:
 
     def __init__(self, root):
         self.root = root
         self.root.title("My Activity")
-        self.root.geometry("800x400")
-        self.root.configure(bg="white")
+        self.root.geometry("636x402")
+        self.root.configure(bg="#E6E4E4")
 
         self.selected_button = None
         self.nav_buttons = {}
         self.user = User()  # Assuming you have a User class
         self.activity = Activity(self.user)
 
-        self.create_header()
         self.create_sidebar()
+        self.create_header()
         self.create_main_content()
 
         self.on_nav_click("Activity")  # Default selected menu item
 
     def create_header(self):
-        header = tk.Frame(self.root, bg="#58C75C", height=50)
-        header.pack(fill=tk.X)
+        header = tk.Frame(self.root, bg="#58C75C", height=47, width=493)
+        header.pack_propagate(False)  # Забороняє зміну розміру
+        header.pack(side='top', anchor='ne')  # Вирівнюємо праворуч з відступами
 
         title = tk.Label(
             header,
-            text="My Activity",
-            font=("Helvetica", 16, "bold"),
+            text="My activity",
+            font=("Helvetica", 20, "bold"),
             bg="#58C75C",
             fg="white"
         )
         title.pack(pady=10)
 
     def create_sidebar(self):
-        sidebar = tk.Frame(self.root, bg="#c4c4c4", width=150)
-        sidebar.pack(side=tk.LEFT, fill=tk.Y)
+        sidebar = ctk.CTkFrame(self.root, fg_color="#C8C8C8", width=143, height=402)
+        sidebar.pack(side="left")
         sidebar.pack_propagate(False)
+
 
         menu_items = {
             "Profile": "👤",
@@ -63,39 +69,62 @@ class ActivityTrackerApp:
                 bd=0,
                 padx=10,
                 pady=8,
-                activebackground="#a0a0a0",
+                activebackground="#8d8989",
                 command=lambda n=name: self.on_nav_click(n)
             )
             btn.pack(fill=tk.X)
             self.nav_buttons[name] = btn
 
+
     def create_main_content(self):
-        self.main_frame = tk.Frame(self.root, bg="white")
+        self.main_frame = tk.Frame(self.root, bg="#E6E4E4")
         self.main_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
 
         # Створюємо контейнер для форми та зображення
-        top_container = tk.Frame(self.main_frame, bg="white")
-        top_container.pack(fill=tk.X, pady=10)
+        top_container = ctk.CTkFrame(self.main_frame, fg_color="#E6E4E4")
+        top_container.pack(fill="x", pady=10)
 
         # Створюємо рамку для форми (ліва частина)
-        workout_frame = tk.LabelFrame(top_container, text="Workout", bg="white", padx=10, pady=10)
-        workout_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        workout_frame = ctk.CTkFrame(top_container, fg_color="#E6E4E4")
+        workout_frame.pack(side="left", fill="both", expand=True, padx=10)
 
         # Activity selection
-        tk.Label(workout_frame, text="Select activity:", bg="white").grid(row=0, column=0, sticky="w")
-        self.activity_var = tk.StringVar()
+        self.activity_var = ctk.StringVar(value="Activity:")
         activities = list(self.activity.activities.keys())
-        self.activity_combobox = ttk.Combobox(workout_frame, textvariable=self.activity_var, values=activities)
-        self.activity_combobox.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+        self.activity_combobox = ctk.CTkComboBox(
+            workout_frame,
+            variable=self.activity_var,
+            values=activities,
+            width=120
+        )
+        self.activity_combobox.grid(row=0, column=0, sticky="ew", padx=5, pady=5, columnspan=2)
+
+        # Додаємо обробник подій для очищення тексту при фокусуванні
+        def clear_placeholder(event):
+            if self.activity_var.get() == "Activity:":
+                self.activity_var.set("")
+
+        def restore_placeholder(event):
+            if not self.activity_var.get():
+                self.activity_var.set("Activity:")
+
+        self.activity_combobox.bind("<FocusIn>", clear_placeholder)
+        self.activity_combobox.bind("<FocusOut>", restore_placeholder)
 
         # Time entry
-        tk.Label(workout_frame, text="Enter time (minutes):", bg="white").grid(row=1, column=0, sticky="w")
-        self.time_entry = tk.Entry(workout_frame)
+        ctk.CTkLabel(workout_frame)
+        self.time_entry = ctk.CTkEntry(workout_frame, placeholder_text="Minutes")
         self.time_entry.grid(row=1, column=1, sticky="ew", padx=5, pady=5)
 
         # Add activity button
-        add_btn = tk.Button(workout_frame, text="Add Activity", command=self.add_activity, bg="#58C75C", fg="white")
-        add_btn.grid(row=2, column=0, columnspan=2, pady=10)
+        add_btn = ctk.CTkButton(
+            workout_frame,
+            text="Add Activity",
+            command=self.add_activity,
+            fg_color="#58C75C",
+            hover_color="#4CAF50"
+        )
+        add_btn.grid(row=2, column=1, columnspan=2, pady=10)
 
         # Додаємо зображення (права частина)
         try:
@@ -108,21 +137,23 @@ class ActivityTrackerApp:
             print("Не вдалося завантажити зображення")
 
         # Activity history table
-        history_frame = tk.LabelFrame(self.main_frame, text="Activity History", bg="white", padx=10, pady=10)
-        history_frame.pack(fill=tk.BOTH, expand=True)
+        history_frame = ctk.CTkFrame(self.main_frame, fg_color="white", width=303, height=189)
+        history_frame.pack(side="left")
+        history_frame.pack_propagate(False)  # Вимкнути автоматичну зміну розміру
+        history_frame.pack()  # Видалити fill="both", expand=True
 
-        columns = ("ID", "Activity Type", "Duration (min)", "Calories", "Date")
+        columns = ("ID", "Activity", "Min", "Calories", "Date")
         self.tree = ttk.Treeview(history_frame, columns=columns, show="headings")
 
         for col in columns:
             self.tree.heading(col, text=col)
-            self.tree.column(col, width=100, anchor=tk.CENTER)
+            self.tree.column(col, width=10, anchor="center")
 
         scrollbar = ttk.Scrollbar(history_frame, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
 
-        self.tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        self.tree.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
 
     def add_activity(self):
         activity_name = self.activity_var.get()
@@ -165,13 +196,11 @@ class ActivityTrackerApp:
         self.user.nutrition.burn_calories(calories_burned)
 
     def update_activity_table(self):
-        # Clear existing data
         for item in self.tree.get_children():
             self.tree.delete(item)
 
-        # Add new data
         for idx, activity in enumerate(self.activity.today_activity, 1):
-            self.tree.insert("", tk.END, values=(
+            self.tree.insert("", "end", values=(
                 idx,
                 activity["activity"],
                 activity["time"],
@@ -183,7 +212,7 @@ class ActivityTrackerApp:
         print(f"Menu button clicked: {name}")
         for btn in self.nav_buttons.values():
             btn.configure(bg="#c4c4c4")
-        self.nav_buttons[name].configure(bg="#a0a0a0")
+        self.nav_buttons[name].configure(bg="#8d8989")
         self.selected_button = name
 
 
