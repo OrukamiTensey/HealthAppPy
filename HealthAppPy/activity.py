@@ -22,6 +22,8 @@ class ActivityTrackerApp:
         self.nav_buttons = {}
         self.user = User()
         self.activity = Activity(self.user)
+        self.current_content = None
+        self.content_stack = []  # To track navigation history
 
         # Основний контейнер з двома колонками
         self.main_container = tk.Frame(root, bg="#E6E4E4")
@@ -36,22 +38,41 @@ class ActivityTrackerApp:
 
         self.create_header()
         self.create_main_content()
+        self.create_workout_content()  # Create workout content but don't show it yet
 
         self.on_nav_click("Activity")  # Default selected menu item
 
     def create_header(self):
-        header = tk.Frame(self.right_panel, bg="#58C75C", height=47)
-        header.pack(side='top', fill='x')
-        header.pack_propagate(False)
+        self.header = tk.Frame(self.right_panel, bg="#58C75C", height=47)
+        self.header.pack(side='top', fill='x')
+        self.header.pack_propagate(False)
 
-        title = tk.Label(
-            header,
+        # Back button (initially hidden)
+        self.back_button = ctk.CTkButton(
+            self.header,
+            text="←",
+            width=30,
+            fg_color="transparent",
+            hover_color="#4CAF50",
+            command=self.go_back,
+            font=("Arial", 16)
+        )
+        self.back_button.pack(side="left", padx=5)
+        self.back_button.pack_forget()
+
+        self.title_label = tk.Label(
+            self.header,
             text="My activity",
             font=("Helvetica", 20, "bold"),
             bg="#58C75C",
             fg="white"
         )
-        title.pack(pady=10)
+        self.title_label.pack(pady=10)
+
+    def go_back(self):
+        if self.content_stack:
+            previous_content = self.content_stack.pop()
+            self.show_content(previous_content, is_back_navigation=True)
 
     def create_sidebar(self):
         sidebar = ctk.CTkFrame(self.main_container, fg_color="#C8C8C8", width=150)
@@ -64,7 +85,8 @@ class ActivityTrackerApp:
             "Activity": "🏃",
             "CalorieC": "📊",
             "Reg_Win": "📝",
-            "Help": "❓"
+            "Help": "❓",
+            "Workout": "💪"  # Added Workout to sidebar
         }
 
         for name, icon in menu_items.items():
@@ -86,8 +108,11 @@ class ActivityTrackerApp:
             self.nav_buttons[name] = btn
 
     def create_main_content(self):
+        # Main content frame that will be shown by default
+        self.main_content_frame = ctk.CTkFrame(self.right_panel, fg_color="#E6E4E4")
+
         # Основний контент у правій панелі
-        content_frame = ctk.CTkFrame(self.right_panel, fg_color="#E6E4E4")
+        content_frame = ctk.CTkFrame(self.main_content_frame, fg_color="#E6E4E4")
         content_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
         # Верхня частина - форма та зображення
@@ -122,6 +147,16 @@ class ActivityTrackerApp:
             hover_color="#4CAF50"
         )
         add_btn.pack(pady=10, fill="x")
+
+        # Workout button on main screen
+        workout_btn = ctk.CTkButton(
+            form_frame,
+            text="💪 Start Workout",
+            command=lambda: self.show_content("Workout"),
+            fg_color="#FF5733",
+            hover_color="#E64A19"
+        )
+        workout_btn.pack(pady=10, fill="x")
 
         # Обробники подій для плейсхолдера
         def clear_placeholder(event):
@@ -164,12 +199,325 @@ class ActivityTrackerApp:
         self.tree.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
 
-    # Інші методи залишаються без змін
+    def create_workout_content(self):
+        # Workout content frame that will be shown when Workout button is clicked
+        self.workout_content_frame = ctk.CTkFrame(self.right_panel, fg_color="#E6E4E4")
+
+        # Create notebook for free and paid courses
+        notebook = ttk.Notebook(self.workout_content_frame)
+        notebook.pack(fill="both", expand=True, padx=10, pady=10)
+
+        # Free courses tab
+        free_frame = ctk.CTkFrame(notebook, fg_color="#E6E4E4")
+        paid_frame = ctk.CTkFrame(notebook, fg_color="#E6E4E4")
+
+        notebook.add(free_frame, text="Free Courses")
+        notebook.add(paid_frame, text="Premium Courses")
+
+        # Add content to free courses tab with scrollbar
+        self.setup_scrollable_course_tab(free_frame, is_free=True)
+        self.setup_scrollable_course_tab(paid_frame, is_free=False)
+
+        # Back button to return to main content
+        back_btn = ctk.CTkButton(
+            self.workout_content_frame,
+            text="← Back to Activity",
+            command=lambda: self.show_content("Activity"),
+            fg_color="#58C75C",
+            hover_color="#4CAF50"
+        )
+        back_btn.pack(side="bottom", pady=10)
+
+    def setup_scrollable_course_tab(self, parent_frame, is_free=True):
+        # Create main container frame
+        container = ctk.CTkFrame(parent_frame, fg_color="#E6E4E4")
+        container.pack(fill="both", expand=True)
+
+        # Create canvas with scrollbar
+        canvas = tk.Canvas(container, bg="#E6E4E4", highlightthickness=0)
+        scrollbar = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
+        scrollable_frame = ctk.CTkFrame(canvas, fg_color="#E6E4E4")
+
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(
+                scrollregion=canvas.bbox("all")
+            )
+        )
+
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        # Pack everything
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+
+        # Add label at the top
+        if is_free:
+            tab_label = "Free Workout Courses"
+            courses = [
+                {"name": "Beginner Full Body Workout",
+                 "author": "John Fitness",
+                 "description": "Perfect for beginners to start their fitness journey"},
+                {"name": "30-Day Yoga Challenge",
+                 "author": "Yoga with Anna",
+                 "description": "Daily yoga sessions to improve flexibility and strength"},
+                {"name": "Home Workout (No Equipment)",
+                 "author": "HomeFit Trainer",
+                 "description": "Effective workouts using just your body weight"},
+                {"name": "Cardio Blast Routine",
+                 "author": "Cardio King",
+                 "description": "High-intensity cardio workout to burn calories fast"},
+                {"name": "Stretching & Flexibility",
+                 "author": "Flex Master",
+                 "description": "Improve your range of motion and prevent injuries"},
+                {"name": "Pilates Fundamentals",
+                 "author": "Pilates Pro",
+                 "description": "Core strengthening exercises for all levels"},
+                {"name": "Morning Energy Boost",
+                 "author": "Energy Coach",
+                 "description": "Short routines to start your day with energy"},
+                {"name": "Posture Correction",
+                 "author": "Posture Expert",
+                 "description": "Exercises to improve your posture and reduce back pain"}
+            ]
+        else:
+            tab_label = "Premium Workout Programs"
+            courses = [
+                {"name": "Advanced Bodybuilding Program",
+                 "author": "Pro Bodybuilder",
+                 "description": "12-week program to build muscle mass",
+                 "price": "$49.99"},
+                {"name": "Personalized Training Plan",
+                 "author": "Elite Trainers",
+                 "description": "Custom workout plan based on your goals",
+                 "price": "$79.99"},
+                {"name": "Marathon Preparation",
+                 "author": "Running Pro",
+                 "description": "Complete training for marathon runners",
+                 "price": "$59.99"},
+                {"name": "Olympic Weightlifting Course",
+                 "author": "Olympic Coach",
+                 "description": "Master the snatch and clean & jerk",
+                 "price": "$69.99"},
+                {"name": "Nutrition + Workout Bundle",
+                 "author": "Health Experts",
+                 "description": "Complete package for fitness and nutrition",
+                 "price": "$99.99"},
+                {"name": "Athlete Performance Program",
+                 "author": "Sports Scientist",
+                 "description": "Training to maximize athletic performance",
+                 "price": "$89.99"},
+                {"name": "Senior Fitness Program",
+                 "author": "Golden Age Trainer",
+                 "description": "Safe exercises for older adults",
+                 "price": "$49.99"},
+                {"name": "Post-Rehabilitation Routine",
+                 "author": "Physical Therapist",
+                 "description": "Exercises for recovery after injuries",
+                 "price": "$59.99"}
+            ]
+
+        label = ctk.CTkLabel(
+            scrollable_frame,
+            text=tab_label,
+            font=("Helvetica", 16, "bold")
+        )
+        label.pack(pady=10)
+
+        # Add courses to the scrollable frame
+        for course in courses:
+            course_frame = ctk.CTkFrame(scrollable_frame, fg_color="white")
+            course_frame.pack(fill="x", padx=10, pady=5)
+
+            # Course info on the left
+            info_frame = ctk.CTkFrame(course_frame, fg_color="white")
+            info_frame.pack(side="left", fill="x", expand=True, padx=10, pady=5)
+
+            name_label = ctk.CTkLabel(
+                info_frame,
+                text=course["name"],
+                font=("Helvetica", 12, "bold")
+            )
+            name_label.pack(anchor="w")
+
+            author_label = ctk.CTkLabel(
+                info_frame,
+                text=f"by {course['author']}",
+                font=("Helvetica", 10),
+                text_color="gray"
+            )
+            author_label.pack(anchor="w")
+
+            desc_label = ctk.CTkLabel(
+                info_frame,
+                text=course["description"],
+                font=("Helvetica", 10),
+                wraplength=400
+            )
+            desc_label.pack(anchor="w", pady=(0, 5))
+
+            # Buttons on the right
+            btn_frame = ctk.CTkFrame(course_frame, fg_color="white")
+            btn_frame.pack(side="right", padx=10, pady=5)
+
+            info_btn = ctk.CTkButton(
+                btn_frame,
+                text="ℹ️ Info",
+                width=60,
+                fg_color="#3498DB",
+                hover_color="#2980B9",
+                command=lambda c=course: self.show_course_info(c)
+            )
+            info_btn.pack(side="left", padx=5)
+
+            if is_free:
+                action_btn = ctk.CTkButton(
+                    btn_frame,
+                    text="Start",
+                    width=60,
+                    fg_color="#58C75C",
+                    hover_color="#4CAF50"
+                )
+            else:
+                action_btn = ctk.CTkButton(
+                    btn_frame,
+                    text=course["price"],
+                    width=80,
+                    fg_color="#FF5733",
+                    hover_color="#E64A19"
+                )
+            action_btn.pack(side="left", padx=5)
+
+    def show_course_info(self, course):
+        # Hide current content
+        if self.current_content:
+            self.current_content.pack_forget()
+
+        # Create info frame
+        self.course_info_frame = ctk.CTkFrame(self.right_panel, fg_color="#E6E4E4")
+        self.current_content = self.course_info_frame
+
+        # Add to navigation stack
+        if self.content_stack and self.content_stack[-1] != "CourseInfo":
+            self.content_stack.append("CourseInfo")
+
+        # Show back button
+        self.back_button.pack(side="left", padx=5)
+        self.title_label.config(text=f"Course: {course['name']}")
+
+        # Course name
+        name_label = ctk.CTkLabel(
+            self.course_info_frame,
+            text=course["name"],
+            font=("Helvetica", 18, "bold")
+        )
+        name_label.pack(pady=(20, 5), padx=20, anchor="w")
+
+        # Author
+        author_frame = ctk.CTkFrame(self.course_info_frame, fg_color="#E6E4E4")
+        author_frame.pack(fill="x", pady=5, padx=20)
+
+        author_title = ctk.CTkLabel(
+            author_frame,
+            text="Author:",
+            font=("Helvetica", 14, "bold")
+        )
+        author_title.pack(side="left", padx=(0, 5))
+
+        author_label = ctk.CTkLabel(
+            author_frame,
+            text=course["author"],
+            font=("Helvetica", 14)
+        )
+        author_label.pack(side="left")
+
+        # Description
+        desc_frame = ctk.CTkFrame(self.course_info_frame, fg_color="white")
+        desc_frame.pack(fill="both", expand=True, padx=20, pady=10)
+
+        desc_label = ctk.CTkLabel(
+            desc_frame,
+            text=course["description"],
+            font=("Helvetica", 12),
+            wraplength=550,
+            justify="left"
+        )
+        desc_label.pack(pady=10, padx=10, anchor="nw")
+
+        # Price if it's a paid course
+        if "price" in course:
+            price_frame = ctk.CTkFrame(self.course_info_frame, fg_color="#E6E4E4")
+            price_frame.pack(fill="x", pady=10, padx=20)
+
+            price_title = ctk.CTkLabel(
+                price_frame,
+                text="Price:",
+                font=("Helvetica", 14, "bold")
+            )
+            price_title.pack(side="left", padx=(0, 5))
+
+            price_label = ctk.CTkLabel(
+                price_frame,
+                text=course["price"],
+                font=("Helvetica", 14),
+                text_color="#FF5733"
+            )
+            price_label.pack(side="left")
+
+        # Action button
+        if "price" in course:
+            action_btn = ctk.CTkButton(
+                self.course_info_frame,
+                text=f"Purchase for {course['price']}",
+                fg_color="#FF5733",
+                hover_color="#E64A19",
+                font=("Helvetica", 14)
+            )
+        else:
+            action_btn = ctk.CTkButton(
+                self.course_info_frame,
+                text="Start Course",
+                fg_color="#58C75C",
+                hover_color="#4CAF50",
+                font=("Helvetica", 14)
+            )
+        action_btn.pack(pady=20)
+
+        self.course_info_frame.pack(fill="both", expand=True)
+
+    def show_content(self, content_name, is_back_navigation=False):
+        # Hide current content
+        if self.current_content:
+            self.current_content.pack_forget()
+
+        # Update navigation stack
+        if not is_back_navigation and content_name != "CourseInfo":
+            if self.current_content:
+                self.content_stack.append(self.current_content)
+            else:
+                self.content_stack.append(content_name)
+
+        # Show the requested content
+        if content_name == "Activity":
+            self.current_content = self.main_content_frame
+            self.title_label.config(text="My Activity")
+            self.back_button.pack_forget()
+        elif content_name == "Workout":
+            self.current_content = self.workout_content_frame
+            self.title_label.config(text="Workout Courses")
+            self.back_button.pack_forget()
+        elif content_name == "CourseInfo":
+            # Handled in show_course_info method
+            return
+
+        self.current_content.pack(fill="both", expand=True)
+
     def add_activity(self):
         activity_name = self.activity_var.get()
         time_str = self.time_entry.get()
 
-        if not activity_name:
+        if not activity_name or activity_name == "Activity:":
             messagebox.showerror("Error", "Please select an activity")
             return
 
@@ -222,6 +570,12 @@ class ActivityTrackerApp:
             btn.configure(bg="#c4c4c4")
         self.nav_buttons[name].configure(bg="#8d8989")
         self.selected_button = name
+
+        # Show appropriate content based on selection
+        if name == "Workout":
+            self.show_content("Workout")
+        else:
+            self.show_content("Activity")
 
 
 class Activity:
