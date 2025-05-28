@@ -286,36 +286,44 @@ class ActivityTrackerApp:
             courses = [
                 {"name": "Advanced Bodybuilding Program",
                  "author": "Pro Bodybuilder",
-                 "description": "12-week program to build muscle mass",
-                 "price": "$49.99"},
-                {"name": "Personalized Training Plan",
+                 "description": "12-тижнева програма для набору м'язової маси",
+                 "price": "499₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
+                {"name": "Персоналізований план тренувань",
                  "author": "Elite Trainers",
-                 "description": "Custom workout plan based on your goals",
-                 "price": "$79.99"},
-                {"name": "Marathon Preparation",
+                 "description": "Індивідуальний план тренувань за вашими цілями",
+                 "price": "799₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
+                {"name": "Підготовка до марафону",
                  "author": "Running Pro",
-                 "description": "Complete training for marathon runners",
-                 "price": "$59.99"},
-                {"name": "Olympic Weightlifting Course",
+                 "description": "Повний тренувальний план для бігунів",
+                 "price": "599₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
+                {"name": "Курс олімпійської важкої атлетики",
                  "author": "Olympic Coach",
-                 "description": "Master the snatch and clean & jerk",
-                 "price": "$69.99"},
-                {"name": "Nutrition + Workout Bundle",
+                 "description": "Навчіться техніці ривку та поштовху",
+                 "price": "699₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
+                {"name": "Пакет 'Харчування + Тренування'",
                  "author": "Health Experts",
-                 "description": "Complete package for fitness and nutrition",
-                 "price": "$99.99"},
-                {"name": "Athlete Performance Program",
+                 "description": "Комплексний пакет для фітнесу та харчування",
+                 "price": "999₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
+                {"name": "Програма для покращення результатів атлетів",
                  "author": "Sports Scientist",
-                 "description": "Training to maximize athletic performance",
-                 "price": "$89.99"},
-                {"name": "Senior Fitness Program",
+                 "description": "Тренування для максимізації спортивних результатів",
+                 "price": "899₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
+                {"name": "Фітнес програма для літніх",
                  "author": "Golden Age Trainer",
-                 "description": "Safe exercises for older adults",
-                 "price": "$49.99"},
-                {"name": "Post-Rehabilitation Routine",
+                 "description": "Безпечні вправи для людей похилого віку",
+                 "price": "499₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
+                {"name": "Програма реабілітації після травм",
                  "author": "Physical Therapist",
-                 "description": "Exercises for recovery after injuries",
-                 "price": "$59.99"}
+                 "description": "Вправи для відновлення після травм",
+                 "price": "599₴",
+                 "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"}
             ]
 
         label = ctk.CTkLabel(
@@ -374,10 +382,11 @@ class ActivityTrackerApp:
             if is_free:
                 action_btn = ctk.CTkButton(
                     btn_frame,
-                    text="Start",
+                    text="Почати",
                     width=60,
                     fg_color="#58C75C",
-                    hover_color="#4CAF50"
+                    hover_color="#4CAF50",
+                    command=lambda c=course: self.show_course_info(c)
                 )
             else:
                 action_btn = ctk.CTkButton(
@@ -385,9 +394,21 @@ class ActivityTrackerApp:
                     text=course["price"],
                     width=80,
                     fg_color="#FF5733",
-                    hover_color="#E64A19"
+                    hover_color="#E64A19",
+                    command=lambda url=course["payment_url"]: self.open_payment_page(url)
                 )
             action_btn.pack(side="left", padx=5)
+
+    def open_payment_page(self, url):
+        """Відкриває сторінку оплати у браузері"""
+        import webbrowser
+        webbrowser.open_new(url)
+        messagebox.showinfo(
+            "Оплата курсу",
+            "Вас перенаправлено на сторінку оплати.\n\n"
+            "Якщо сторінка не відкрилася автоматично, скопіюйте це посилання:\n"
+            f"{url}"
+        )
 
     def show_course_info(self, course):
         # Hide current content
@@ -402,25 +423,29 @@ class ActivityTrackerApp:
         if self.content_stack and self.content_stack[-1] != "CourseInfo":
             self.content_stack.append("CourseInfo")
 
-        # Show back button
+        # Show back button in header
         self.back_button.pack(side="left", padx=5)
-        self.title_label.config(text=f"Course: {course['name']}")
+        self.title_label.config(text=f"Курс: {course['name']}")
+
+        # Main content container
+        content_container = ctk.CTkFrame(self.course_info_frame, fg_color="#E6E4E4")
+        content_container.pack(fill="both", expand=True, padx=20, pady=20)
 
         # Course name
         name_label = ctk.CTkLabel(
-            self.course_info_frame,
+            content_container,
             text=course["name"],
             font=("Helvetica", 18, "bold")
         )
-        name_label.pack(pady=(20, 5), padx=20, anchor="w")
+        name_label.pack(pady=(0, 5), anchor="w")
 
         # Author
-        author_frame = ctk.CTkFrame(self.course_info_frame, fg_color="#E6E4E4")
-        author_frame.pack(fill="x", pady=5, padx=20)
+        author_frame = ctk.CTkFrame(content_container, fg_color="#E6E4E4")
+        author_frame.pack(fill="x", pady=5)
 
         author_title = ctk.CTkLabel(
             author_frame,
-            text="Author:",
+            text="Автор:",
             font=("Helvetica", 14, "bold")
         )
         author_title.pack(side="left", padx=(0, 5))
@@ -433,8 +458,8 @@ class ActivityTrackerApp:
         author_label.pack(side="left")
 
         # Description
-        desc_frame = ctk.CTkFrame(self.course_info_frame, fg_color="white")
-        desc_frame.pack(fill="both", expand=True, padx=20, pady=10)
+        desc_frame = ctk.CTkFrame(content_container, fg_color="white")
+        desc_frame.pack(fill="both", expand=True, pady=10)
 
         desc_label = ctk.CTkLabel(
             desc_frame,
@@ -447,12 +472,12 @@ class ActivityTrackerApp:
 
         # Price if it's a paid course
         if "price" in course:
-            price_frame = ctk.CTkFrame(self.course_info_frame, fg_color="#E6E4E4")
-            price_frame.pack(fill="x", pady=10, padx=20)
+            price_frame = ctk.CTkFrame(content_container, fg_color="#E6E4E4")
+            price_frame.pack(fill="x", pady=10)
 
             price_title = ctk.CTkLabel(
                 price_frame,
-                text="Price:",
+                text="Ціна:",
                 font=("Helvetica", 14, "bold")
             )
             price_title.pack(side="left", padx=(0, 5))
@@ -465,26 +490,51 @@ class ActivityTrackerApp:
             )
             price_label.pack(side="left")
 
-        # Action button
+        # Action buttons at bottom
+        button_frame = ctk.CTkFrame(content_container, fg_color="#E6E4E4")
+        button_frame.pack(fill="x", pady=20)
+
+        # Back button
+        back_btn = ctk.CTkButton(
+            button_frame,
+            text="← Назад до курсів",
+            command=lambda: self.show_content("Workout"),
+            fg_color="#58C75C",
+            hover_color="#4CAF50",
+            font=("Helvetica", 12)
+        )
+        back_btn.pack(side="left", padx=5)
+
+        # Main action button
         if "price" in course:
             action_btn = ctk.CTkButton(
-                self.course_info_frame,
-                text=f"Purchase for {course['price']}",
+                button_frame,
+                text=f"Придбати за {course['price']}",
                 fg_color="#FF5733",
                 hover_color="#E64A19",
-                font=("Helvetica", 14)
+                font=("Helvetica", 14),
+                command=lambda url=course["payment_url"]: self.open_payment_page(url)
             )
         else:
             action_btn = ctk.CTkButton(
-                self.course_info_frame,
-                text="Start Course",
+                button_frame,
+                text="Почати тренування",
                 fg_color="#58C75C",
                 hover_color="#4CAF50",
-                font=("Helvetica", 14)
+                font=("Helvetica", 14),
+                command=lambda: self.start_training(course)
             )
-        action_btn.pack(pady=20)
+        action_btn.pack(side="right")
 
         self.course_info_frame.pack(fill="both", expand=True)
+    def process_donation(self, amount, course_name):
+        card_number = "5168 7451 3985 9034"
+        messagebox.showinfo(
+            "Donation",
+            f"Thank you for your {amount}₴ donation!\n\n"
+            f"Please transfer to card:\n{card_number}\n\n"
+            f"Reference: {course_name}"
+        )
 
     def show_content(self, content_name, is_back_navigation=False):
         # Hide current content
