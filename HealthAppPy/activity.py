@@ -4,6 +4,7 @@ import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
+from PIL import Image, ImageTk, ImageDraw
 
 # Налаштування теми CustomTkinter
 ctk.set_appearance_mode("light")  # Світла тема
@@ -55,7 +56,7 @@ class ActivityTrackerApp:
             fg_color="transparent",
             hover_color="#4CAF50",
             command=self.go_back,
-            font=("Arial", 16)
+            font=("Arial", 16, "bold")
         )
         self.back_button.pack(side="left", padx=5)
         self.back_button.pack_forget()
@@ -95,7 +96,7 @@ class ActivityTrackerApp:
                 text=f"  {icon}  {name}",
                 anchor="w",
                 justify="left",
-                font=("Arial", 10),
+                font=("Arial", 10, "bold"),
                 bg="#c4c4c4",
                 fg="black",
                 bd=0,
@@ -130,12 +131,13 @@ class ActivityTrackerApp:
             form_frame,
             variable=self.activity_var,
             values=activities,
-            width=200
+            width=200,
+            font=("Arial", 12, "bold")
         )
         self.activity_combobox.pack(pady=5, fill="x")
 
         # Поле для введення часу
-        self.time_entry = ctk.CTkEntry(form_frame, placeholder_text="Minutes")
+        self.time_entry = ctk.CTkEntry(form_frame, placeholder_text="Minutes", font=("Arial", 12, "bold"))
         self.time_entry.pack(pady=5, fill="x")
 
         # Кнопка додавання активності
@@ -144,7 +146,8 @@ class ActivityTrackerApp:
             text="Add Activity",
             command=self.add_activity,
             fg_color="#58C75C",
-            hover_color="#4CAF50"
+            hover_color="#4CAF50",
+            font=("Arial", 12, "bold")
         )
         add_btn.pack(pady=10, fill="x")
 
@@ -154,7 +157,8 @@ class ActivityTrackerApp:
             text="💪 Start Workout",
             command=lambda: self.show_content("Workout"),
             fg_color="#FF5733",
-            hover_color="#E64A19"
+            hover_color="#E64A19",
+            font=("Arial", 12, "bold")
         )
         workout_btn.pack(pady=10, fill="x")
 
@@ -182,22 +186,36 @@ class ActivityTrackerApp:
         except:
             print("Не вдалося завантажити зображення")
 
-        # Таблиця історії активностей
-        history_frame = ctk.CTkFrame(content_frame, fg_color="white")
-        history_frame.pack(fill="both", expand=True, pady=(0, 20))
+        # Контейнер для історії активностей зі скролером
+        history_container = ctk.CTkFrame(content_frame, fg_color="white")
+        history_container.pack(fill="both", expand=True, pady=(0, 20))
 
+        # Створення Treeview зі скролбаром
         columns = ("ID", "Activity", "Min", "Calories", "Date")
-        self.tree = ttk.Treeview(history_frame, columns=columns, show="headings")
+        self.tree = ttk.Treeview(history_container, columns=columns, show="headings",
+                                 height=8)  # height вказує кількість видимих рядків
 
+        # Налаштування колонок
         for col in columns:
-            self.tree.heading(col, text=col)
+            self.tree.heading(col, text=col, anchor="center")
             self.tree.column(col, anchor="center", width=100)
 
-        scrollbar = ttk.Scrollbar(history_frame, orient="vertical", command=self.tree.yview)
-        self.tree.configure(yscrollcommand=scrollbar.set)
+        # Вертикальний скролбар
+        y_scrollbar = ttk.Scrollbar(history_container, orient="vertical", command=self.tree.yview)
+        self.tree.configure(yscrollcommand=y_scrollbar.set)
 
-        self.tree.pack(side="left", fill="both", expand=True)
-        scrollbar.pack(side="right", fill="y")
+        # Горизонтальний скролбар (якщо потрібно)
+        x_scrollbar = ttk.Scrollbar(history_container, orient="horizontal", command=self.tree.xview)
+        self.tree.configure(xscrollcommand=x_scrollbar.set)
+
+        # Розміщення елементів у контейнері
+        self.tree.grid(row=0, column=0, sticky="nsew")
+        y_scrollbar.grid(row=0, column=1, sticky="ns")
+        x_scrollbar.grid(row=1, column=0, sticky="ew")
+
+        # Налаштування розтягування
+        history_container.grid_rowconfigure(0, weight=1)
+        history_container.grid_columnconfigure(0, weight=1)
 
     def create_workout_content(self):
         # Workout content frame that will be shown when Workout button is clicked
@@ -241,7 +259,8 @@ class ActivityTrackerApp:
         scrollable_frame.bind(
             "<Configure>",
             lambda e: canvas.configure(
-                scrollregion=canvas.bbox("all")
+                scrollregion=canvas.bbox("all"),
+                width=e.width  # Set canvas width to match frame width
             )
         )
 
@@ -285,42 +304,42 @@ class ActivityTrackerApp:
             tab_label = "Premium Workout Programs"
             courses = [
                 {"name": "Advanced Bodybuilding Program",
-                 "author": "Pro Bodybuilder",
+                 "author": "Karina",
                  "description": "12-тижнева програма для набору м'язової маси",
                  "price": "499₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
                 {"name": "Персоналізований план тренувань",
-                 "author": "Elite Trainers",
+                 "author": "Nikitos",
                  "description": "Індивідуальний план тренувань за вашими цілями",
                  "price": "799₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
                 {"name": "Підготовка до марафону",
-                 "author": "Running Pro",
+                 "author": "Valyuha",
                  "description": "Повний тренувальний план для бігунів",
                  "price": "599₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
                 {"name": "Курс олімпійської важкої атлетики",
-                 "author": "Olympic Coach",
+                 "author": "Den",
                  "description": "Навчіться техніці ривку та поштовху",
                  "price": "699₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
                 {"name": "Пакет 'Харчування + Тренування'",
-                 "author": "Health Experts",
+                 "author": "Karina",
                  "description": "Комплексний пакет для фітнесу та харчування",
                  "price": "999₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
-                {"name": "Програма для покращення результатів атлетів",
-                 "author": "Sports Scientist",
+                {"name": "Програма для атлетів",
+                 "author": "Nikitos",
                  "description": "Тренування для максимізації спортивних результатів",
                  "price": "899₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
                 {"name": "Фітнес програма для літніх",
-                 "author": "Golden Age Trainer",
+                 "author": "Valyuha",
                  "description": "Безпечні вправи для людей похилого віку",
                  "price": "499₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"},
                 {"name": "Програма реабілітації після травм",
-                 "author": "Physical Therapist",
+                 "author": "Den",
                  "description": "Вправи для відновлення після травм",
                  "price": "599₴",
                  "payment_url": "https://send.monobank.ua/jar/6cWsfVUBh3"}
@@ -336,23 +355,54 @@ class ActivityTrackerApp:
         # Add courses to the scrollable frame
         for course in courses:
             course_frame = ctk.CTkFrame(scrollable_frame, fg_color="white")
-            course_frame.pack(fill="x", padx=10, pady=5)
+            course_frame.pack(fill="x", padx=10, pady=5, ipadx=5, ipady=5)  # Add internal padding
 
-            # Course info on the left
+            # Author image on the left - кружечок з фото автора
+            author_img_frame = ctk.CTkFrame(course_frame, fg_color="white", width=50, height=50)
+            author_img_frame.pack(side="left", padx=5, pady=5)
+            author_img_frame.pack_propagate(False)
+
+            try:
+                # Використовуємо ім'я автора для завантаження фото
+                img_name = f"{course['author']}.png"
+                img = Image.open(img_name)
+                img = img.resize((50, 50), Image.Resampling.LANCZOS)
+
+                # Створюємо круглу маску
+                mask = Image.new("L", (50, 50), 0)
+                draw = ImageDraw.Draw(mask)
+                draw.ellipse((0, 0, 50, 50), fill=255)
+
+                # Застосовуємо маску
+                img.putalpha(mask)
+                photo = ImageTk.PhotoImage(img)
+
+                img_label = tk.Label(author_img_frame, image=photo, bg="white")
+                img_label.image = photo  # Зберігаємо посилання на фото
+                img_label.pack()
+            except Exception as e:
+                print(f"Couldn't load author image: {e}")
+                # Якщо фото не знайдено - показуємо ініціали
+                placeholder = tk.Label(author_img_frame, text=course["author"][0], bg="white",
+                                       font=("Arial", 20, "bold"), fg="#58C75C")
+                placeholder.pack(fill="both", expand=True)
+
+            # Course info in the middle
             info_frame = ctk.CTkFrame(course_frame, fg_color="white")
-            info_frame.pack(side="left", fill="x", expand=True, padx=10, pady=5)
+            info_frame.pack(side="left", fill="both", expand=True, padx=5, pady=5)
 
             name_label = ctk.CTkLabel(
                 info_frame,
                 text=course["name"],
-                font=("Helvetica", 12, "bold")
+                font=("Helvetica", 11, "bold"),
+                wraplength=250  # Обмежуємо ширину тексту
             )
             name_label.pack(anchor="w")
 
             author_label = ctk.CTkLabel(
                 info_frame,
                 text=f"by {course['author']}",
-                font=("Helvetica", 10),
+                font=("Helvetica", 10, "bold"),
                 text_color="gray"
             )
             author_label.pack(anchor="w")
@@ -360,45 +410,47 @@ class ActivityTrackerApp:
             desc_label = ctk.CTkLabel(
                 info_frame,
                 text=course["description"],
-                font=("Helvetica", 10),
-                wraplength=400
+                font=("Helvetica", 10, "bold"),
+                wraplength=250  # Обмежуємо ширину тексту
             )
             desc_label.pack(anchor="w", pady=(0, 5))
 
             # Buttons on the right
             btn_frame = ctk.CTkFrame(course_frame, fg_color="white")
-            btn_frame.pack(side="right", padx=10, pady=5)
+            btn_frame.pack(side="right", padx=5, pady=5)
 
             info_btn = ctk.CTkButton(
                 btn_frame,
                 text="ℹ️ Info",
-                width=60,
+                width=70,
                 fg_color="#3498DB",
                 hover_color="#2980B9",
-                command=lambda c=course: self.show_course_info(c)
+                command=lambda c=course: self.show_course_info(c),
+                font=("Arial", 10, "bold")
             )
-            info_btn.pack(side="left", padx=5)
+            info_btn.pack(side="top", pady=2)
 
             if is_free:
                 action_btn = ctk.CTkButton(
                     btn_frame,
                     text="Почати",
-                    width=60,
+                    width=70,
                     fg_color="#58C75C",
                     hover_color="#4CAF50",
-                    command=lambda c=course: self.show_course_info(c)
+                    command=lambda c=course: self.show_course_info(c),
+                    font=("Arial", 10, "bold")
                 )
             else:
                 action_btn = ctk.CTkButton(
                     btn_frame,
                     text=course["price"],
-                    width=80,
+                    width=70,
                     fg_color="#FF5733",
                     hover_color="#E64A19",
-                    command=lambda url=course["payment_url"]: self.open_payment_page(url)
+                    command=lambda url=course["payment_url"]: self.open_payment_page(url),
+                    font=("Arial", 10, "bold")
                 )
-            action_btn.pack(side="left", padx=5)
-
+            action_btn.pack(side="top", pady=2)
     def open_payment_page(self, url):
         """Відкриває сторінку оплати у браузері"""
         import webbrowser
@@ -407,7 +459,8 @@ class ActivityTrackerApp:
             "Оплата курсу",
             "Вас перенаправлено на сторінку оплати.\n\n"
             "Якщо сторінка не відкрилася автоматично, скопіюйте це посилання:\n"
-            f"{url}"
+            f"{url}",
+            font=("Arial", 10, "bold")
         )
 
     def show_course_info(self, course):
@@ -425,7 +478,7 @@ class ActivityTrackerApp:
 
         # Show back button in header
         self.back_button.pack(side="left", padx=5)
-        self.title_label.config(text=f"Курс: {course['name']}")
+        self.title_label.config(text=f" {course['name']}")
 
         # Main content container
         content_container = ctk.CTkFrame(self.course_info_frame, fg_color="#E6E4E4")
@@ -439,23 +492,56 @@ class ActivityTrackerApp:
         )
         name_label.pack(pady=(0, 5), anchor="w")
 
-        # Author
+        # Author section with image
         author_frame = ctk.CTkFrame(content_container, fg_color="#E6E4E4")
         author_frame.pack(fill="x", pady=5)
 
+        # Author image
+        author_img_frame = ctk.CTkFrame(author_frame, fg_color="#E6E4E4", width=60, height=60)
+        author_img_frame.pack(side="left", padx=10)
+        author_img_frame.pack_propagate(False)
+
+        try:
+            img_name = course["author"].replace(" ", "_") + ".png"
+            img = Image.open(img_name)
+            img = img.resize((60, 60), Image.Resampling.LANCZOS)
+
+            # Create circular mask
+            mask = Image.new("L", (60, 60), 0)
+            draw = ImageDraw.Draw(mask)
+            draw.ellipse((0, 0, 60, 60), fill=255)
+
+            # Apply mask
+            img.putalpha(mask)
+            photo = ImageTk.PhotoImage(img)
+
+            img_label = tk.Label(author_img_frame, image=photo, bg="#E6E4E4")
+            img_label.image = photo
+            img_label.pack()
+        except Exception as e:
+            print(f"Couldn't load author image: {e}")
+            # Placeholder if image not found
+            placeholder = tk.Label(author_img_frame, text=course["author"][0], bg="#E6E4E4",
+                                   font=("Arial", 20, "bold"), fg="#58C75C")
+            placeholder.pack(fill="both", expand=True)
+
+        # Author text info
+        author_text_frame = ctk.CTkFrame(author_frame, fg_color="#E6E4E4")
+        author_text_frame.pack(side="left", fill="x", expand=True)
+
         author_title = ctk.CTkLabel(
-            author_frame,
+            author_text_frame,
             text="Автор:",
             font=("Helvetica", 14, "bold")
         )
-        author_title.pack(side="left", padx=(0, 5))
+        author_title.pack(anchor="w")
 
         author_label = ctk.CTkLabel(
-            author_frame,
+            author_text_frame,
             text=course["author"],
-            font=("Helvetica", 14)
+            font=("Helvetica", 14, "bold")
         )
-        author_label.pack(side="left")
+        author_label.pack(anchor="w")
 
         # Description
         desc_frame = ctk.CTkFrame(content_container, fg_color="white")
@@ -464,7 +550,7 @@ class ActivityTrackerApp:
         desc_label = ctk.CTkLabel(
             desc_frame,
             text=course["description"],
-            font=("Helvetica", 12),
+            font=("Helvetica", 12, "bold"),
             wraplength=550,
             justify="left"
         )
@@ -485,7 +571,7 @@ class ActivityTrackerApp:
             price_label = ctk.CTkLabel(
                 price_frame,
                 text=course["price"],
-                font=("Helvetica", 14),
+                font=("Helvetica", 14, "bold"),
                 text_color="#FF5733"
             )
             price_label.pack(side="left")
@@ -501,7 +587,7 @@ class ActivityTrackerApp:
             command=lambda: self.show_content("Workout"),
             fg_color="#58C75C",
             hover_color="#4CAF50",
-            font=("Helvetica", 12)
+            font=("Helvetica", 12, "bold")
         )
         back_btn.pack(side="left", padx=5)
 
@@ -512,7 +598,7 @@ class ActivityTrackerApp:
                 text=f"Придбати за {course['price']}",
                 fg_color="#FF5733",
                 hover_color="#E64A19",
-                font=("Helvetica", 14),
+                font=("Helvetica", 14, "bold"),
                 command=lambda url=course["payment_url"]: self.open_payment_page(url)
             )
         else:
@@ -521,19 +607,21 @@ class ActivityTrackerApp:
                 text="Почати тренування",
                 fg_color="#58C75C",
                 hover_color="#4CAF50",
-                font=("Helvetica", 14),
+                font=("Helvetica", 14, "bold"),
                 command=lambda: self.start_training(course)
             )
         action_btn.pack(side="right")
 
         self.course_info_frame.pack(fill="both", expand=True)
+
     def process_donation(self, amount, course_name):
         card_number = "5168 7451 3985 9034"
         messagebox.showinfo(
             "Donation",
             f"Thank you for your {amount}₴ donation!\n\n"
             f"Please transfer to card:\n{card_number}\n\n"
-            f"Reference: {course_name}"
+            f"Reference: {course_name}",
+            font=("Arial", 10, "bold")
         )
 
     def show_content(self, content_name, is_back_navigation=False):
